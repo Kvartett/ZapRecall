@@ -2,13 +2,14 @@ import { useState } from "react"
 import styled from "styled-components"
 
 export default function CardPergunta(props) {
-    const {id, question, answer} = props
+    const {id, question, answer, respondendoPergunta, setRespondendoPergunta} = props
     const [estadoPergunta, setEstadoPergunta] = useState(0)
+    console.log(respondendoPergunta)
 
     return (estadoPergunta === 0) ? (
         <PerguntaFechada>
             <p>Pergunta {id}</p>
-            <ion-icon name="play-outline" onClick={() => setEstadoPergunta(1)}></ion-icon>
+            <ion-icon name="play-outline" onClick={() => {if(respondendoPergunta === false){ setEstadoPergunta(1); setRespondendoPergunta(true)}}}></ion-icon>
         </PerguntaFechada>
     ) : (estadoPergunta === 1) ? (
         <PerguntaAberta>
