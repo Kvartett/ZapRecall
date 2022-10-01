@@ -4,7 +4,6 @@ import styled from "styled-components"
 export default function CardPergunta(props) {
     const {id, question, answer, respondendoPergunta, setRespondendoPergunta} = props
     const [estadoPergunta, setEstadoPergunta] = useState(0)
-    console.log(respondendoPergunta)
 
     return (estadoPergunta === 0) ? (
         <PerguntaFechada>
