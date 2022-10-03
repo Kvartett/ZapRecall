@@ -2,11 +2,11 @@ import { useState } from "react"
 import styled from "styled-components"
 
 export default function CardPergunta(props) {
-    const {id, question, answer, respondendoPergunta, setRespondendoPergunta, respondeuPergunta, setRespondeuPergunta, index} = props
+    const {id, question, answer, perguntasRespondidas, setPerguntasRespondidas, respondendoPergunta, respondeuPergunta, setRespondeuPergunta, index} = props
     const [estadoPergunta, setEstadoPergunta] = useState(0)
 
-    return (estadoPergunta === 0 || respondeuPergunta[index] !== "cinza") ? (
-        <PerguntaFechada>
+    return (estadoPergunta === 0 || respondeuPergunta[index] !== "#333333") ? (
+        <PerguntaFechada index={index} respondeuPergunta={respondeuPergunta}>
             <p>Pergunta {id}</p>
             <ion-icon name="play-outline" onClick={() => {if(respondendoPergunta === false){ setEstadoPergunta(1)}}}></ion-icon>
         </PerguntaFechada>
@@ -14,13 +14,11 @@ export default function CardPergunta(props) {
         <PerguntaAberta>
             <p>{question}</p>
             <ion-icon name="repeat-outline" onClick={() => setEstadoPergunta(2)}></ion-icon>
-            <FooterConcluidos>
                 <ContainerBotoes>
-                    <NaoLembrei onClick={() => {respondeuPergunta[index] = "vermelho" ; setRespondeuPergunta([...respondeuPergunta])}}>Não lembrei</NaoLembrei>
-                    <QuaseNaoLembrei onClick={() => {respondeuPergunta[index] = "laranja" ; setRespondeuPergunta([...respondeuPergunta])}}>Quase não lembrei</QuaseNaoLembrei>
-                    <Zap onClick={() => {respondeuPergunta[index] = "verde" ; setRespondeuPergunta([...respondeuPergunta])}}>Zap!</Zap>
+                    <NaoLembrei onClick={() => {respondeuPergunta[index] = "#FF3030" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Não lembrei</NaoLembrei>
+                    <QuaseNaoLembrei onClick={() => {respondeuPergunta[index] = "#FF922E" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Quase não lembrei</QuaseNaoLembrei>
+                    <Zap onClick={() => {respondeuPergunta[index] = "#2FBE34" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Zap!</Zap>
                 </ContainerBotoes>
-            </FooterConcluidos>
         </PerguntaAberta>
     ) : ( 
         <PerguntaAberta>
@@ -46,12 +44,14 @@ const PerguntaFechada = styled.div`
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: ${(props) => props.respondeuPergunta};
+        color: ${(props) => props.respondeuPergunta[props.index]};
+        text-decoration-line: ${(props) => (props.respondeuPergunta[props.index] === "#333333") ? ("none") : ("line-through")};
     }
     ion-icon {
         font-size: 28px;
     }
 `
+// (props) => {(respondeuPergunta[props.index] === "#333333")}
 
 const PerguntaAberta = styled.div`
     width: 300px;
@@ -77,25 +77,10 @@ const PerguntaAberta = styled.div`
         right: 10px;
     }
 `
-const FooterConcluidos = styled.div`
-    width: 100%;
-    min-height: 50px;
-    background-color: #FFFFFF;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Recursive';
-    font-weight: 400;
-    font-size: 18px;
-    color: #333333;
-    padding: 10px;
-`
 
 const ContainerBotoes = styled.div`
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: space-between;
     margin: 20px;
     button {
@@ -107,12 +92,13 @@ const ContainerBotoes = styled.div`
         line-height: 14px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         text-align: center;
         color: #FFFFFF;
         border-radius: 5px;
         border: 1px solid black;
         padding:5px;
+        margin: 0 3px;
     }
 `
 

@@ -8,12 +8,11 @@ import { useState } from "react";
 
 export default function ZapMain() {
     const [perguntasRespondidas, setPerguntasRespondidas] = useState(0)
-    const [respondeuPergunta, setRespondeuPergunta] = useState(Deck.map(d => "cinza"))
-    // [ cinza, cinza, cinza, cinza ]
+    const [respondeuPergunta, setRespondeuPergunta] = useState(Deck.map(d => "#333333"))
     return (
     <ScreenContainer>
         <Logo />
-        <Perguntas deck={Deck} setRespondeuPergunta={setRespondeuPergunta} respondeuPergunta={respondeuPergunta}/>
+        <Perguntas deck={Deck} setRespondeuPergunta={setRespondeuPergunta} perguntasRespondidas={perguntasRespondidas} setPerguntasRespondidas={setPerguntasRespondidas} respondeuPergunta={respondeuPergunta}/>
         <Footer deck={Deck} perguntasRespondidas={perguntasRespondidas} respondeuPergunta={respondeuPergunta} setRespondeuPergunta={setRespondeuPergunta}/>
     </ScreenContainer>
   );
@@ -30,7 +29,7 @@ const ScreenContainer = styled.div`
     align-items: center;
     margin: 0px;
     padding: 0px;
-    padding-bottom: 200px;
+    padding-bottom: 100px;
 `
 //const verde = "#2FBE34";
 //const laranja = "#FF922E";

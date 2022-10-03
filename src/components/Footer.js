@@ -5,7 +5,7 @@ export default function Footer(props){
     const tamanhoDeck = deck.length
 
     return(
-            <div>{perguntasRespondidas}/{tamanhoDeck}</div>
+            <FooterConcluidos>{perguntasRespondidas}/{tamanhoDeck} CONCLUÍDAS</FooterConcluidos>
     )
 }
 
@@ -24,37 +24,4 @@ const FooterConcluidos = styled.div`
     font-size: 18px;
     color: #333333;
     padding: 10px;
-`
-
-const ContainerBotoes = styled.div`
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
-    margin: 20px;
-    button {
-        width: 90px;
-        font-family: 'Recursive';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: #FFFFFF;
-        border-radius: 5px;
-        border: 1px solid black;
-        padding:5px;
-    }
-`
-
-const Zap = styled.button`
-    background-color: #2FBE34;
-`
-const QuaseNaoLembrei = styled.button`
-    background-color: #FF922E;
-`
-const NaoLembrei = styled.button`
-    background-color: #FF3030;
 `
