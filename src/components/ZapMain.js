@@ -13,7 +13,7 @@ export default function ZapMain() {
     <ScreenContainer>
         <Logo />
         <Perguntas deck={Deck} setRespondeuPergunta={setRespondeuPergunta} perguntasRespondidas={perguntasRespondidas} setPerguntasRespondidas={setPerguntasRespondidas} respondeuPergunta={respondeuPergunta}/>
-        <Footer deck={Deck} perguntasRespondidas={perguntasRespondidas} respondeuPergunta={respondeuPergunta} setRespondeuPergunta={setRespondeuPergunta}/>
+        <Footer deck={Deck} perguntasRespondidas={perguntasRespondidas} respondeuPergunta={respondeuPergunta}/>
     </ScreenContainer>
   );
 }
@@ -31,6 +31,3 @@ const ScreenContainer = styled.div`
     padding: 0px;
     padding-bottom: 100px;
 `
-//const verde = "#2FBE34";
-//const laranja = "#FF922E";
-//const vermelho = "#FF3030";
