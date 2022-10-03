@@ -5,24 +5,37 @@ export default function CardPergunta(props) {
     const {id, question, answer, perguntasRespondidas, setPerguntasRespondidas, respondendoPergunta, respondeuPergunta, setRespondeuPergunta, index} = props
     const [estadoPergunta, setEstadoPergunta] = useState(0)
 
+    function IonIcon(props) {
+        const {respondeuPergunta, index} = props
+        if (respondeuPergunta[index] === "#333333") {
+            return (<ion-icon name="play-outline" onClick={() => {if(respondendoPergunta === false){ setEstadoPergunta(1)}}}></ion-icon>)
+        } else if (respondeuPergunta[index] === "FF3030"){
+            return (<ion-icon name="close-circle-sharp"></ion-icon>)
+        } else if (respondeuPergunta[index] === "#2FBE34"){
+            return (<ion-icon name="checkmark-circle-sharp"></ion-icon>)
+        } else {
+            return (<ion-icon name="help-circle-sharp"></ion-icon>)
+        }
+    }
+
     return (estadoPergunta === 0 || respondeuPergunta[index] !== "#333333") ? (
         <PerguntaFechada index={index} respondeuPergunta={respondeuPergunta}>
             <p>Pergunta {id}</p>
-            <ion-icon name="play-outline" onClick={() => {if(respondendoPergunta === false){ setEstadoPergunta(1)}}}></ion-icon>
+            <IonIcon respondeuPergunta={respondeuPergunta} index={index}/>
         </PerguntaFechada>
     ) : (estadoPergunta === 1) ? (
         <PerguntaAberta>
             <p>{question}</p>
             <ion-icon name="repeat-outline" onClick={() => setEstadoPergunta(2)}></ion-icon>
-                <ContainerBotoes>
-                    <NaoLembrei onClick={() => {respondeuPergunta[index] = "#FF3030" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Não lembrei</NaoLembrei>
-                    <QuaseNaoLembrei onClick={() => {respondeuPergunta[index] = "#FF922E" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Quase não lembrei</QuaseNaoLembrei>
-                    <Zap onClick={() => {respondeuPergunta[index] = "#2FBE34" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Zap!</Zap>
-                </ContainerBotoes>
         </PerguntaAberta>
     ) : ( 
         <PerguntaAberta>
             <p>{answer}</p>
+            <ContainerBotoes>
+                <NaoLembrei onClick={() => {respondeuPergunta[index] = "#FF3030" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Não lembrei</NaoLembrei>
+                <QuaseNaoLembrei onClick={() => {respondeuPergunta[index] = "#FF922E" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Quase não lembrei</QuaseNaoLembrei>
+                <Zap onClick={() => {respondeuPergunta[index] = "#2FBE34" ; setRespondeuPergunta([...respondeuPergunta]); setPerguntasRespondidas(perguntasRespondidas + 1)}}>Zap!</Zap>
+            </ContainerBotoes>
         </PerguntaAberta>
     )
 }
@@ -49,6 +62,7 @@ const PerguntaFechada = styled.div`
     }
     ion-icon {
         font-size: 28px;
+        color: ${(props) => props.respondeuPergunta[props.index]};
     }
 `
 // (props) => {(respondeuPergunta[props.index] === "#333333")}
@@ -82,7 +96,6 @@ const ContainerBotoes = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin: 20px;
     button {
         width: 90px;
         font-family: 'Recursive';
