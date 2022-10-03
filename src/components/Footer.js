@@ -1,18 +1,11 @@
 import styled from "styled-components"
 
 export default function Footer(props){
-    const {deck ,perguntasRespondidas, setPerguntasRespondidas} = props
+    const {deck ,perguntasRespondidas} = props
     const tamanhoDeck = deck.length
 
     return(
-        <FooterConcluidos>
-            <ContainerBotoes>
-                <NaoLembrei>Não lembrei</NaoLembrei>
-                <QuaseNaoLembrei>Quase não lembrei</QuaseNaoLembrei>
-                <Zap>Zap!</Zap>
-            </ContainerBotoes>
             <div>{perguntasRespondidas}/{tamanhoDeck}</div>
-        </FooterConcluidos>
     )
 }
 

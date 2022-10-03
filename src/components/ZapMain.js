@@ -8,11 +8,13 @@ import { useState } from "react";
 
 export default function ZapMain() {
     const [perguntasRespondidas, setPerguntasRespondidas] = useState(0)
+    const [respondeuPergunta, setRespondeuPergunta] = useState(Deck.map(d => "cinza"))
+    // [ cinza, cinza, cinza, cinza ]
     return (
     <ScreenContainer>
         <Logo />
-        <Perguntas deck={Deck}/>
-        <Footer deck={Deck}perguntasRespondidas={perguntasRespondidas} setPerguntasRespondidas={setPerguntasRespondidas}/>
+        <Perguntas deck={Deck} setRespondeuPergunta={setRespondeuPergunta} respondeuPergunta={respondeuPergunta}/>
+        <Footer deck={Deck} perguntasRespondidas={perguntasRespondidas} respondeuPergunta={respondeuPergunta} setRespondeuPergunta={setRespondeuPergunta}/>
     </ScreenContainer>
   );
 }
